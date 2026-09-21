@@ -9,9 +9,9 @@
 
 <nav class="flex flex-row w-full h-15 items-center font-outfit font-semibold gap-10 text-2xl rounded-xl px-6" style="background-color: RGB(1, 42, 74); color: RGB(97, 165, 194);">
     
-    <p>Home</p>
+    <a href="{% url 'blog:homepage' %}">Home</a>
     <p>Login</p>
-    <p>Sign Up</p>
+    <a href="{% url 'users:signup' %}">Sign Up</a>
     <p class="ml-auto">Article Flow</p>
 </nav>
 <br>

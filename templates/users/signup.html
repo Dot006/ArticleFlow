@@ -1,0 +1,56 @@
+{% extends "homepage.html" %}
+
+{% block title %} Sign Up {% endblock title %}
+
+{% block content %}
+
+<div class="flex flex-col items-center w-1/4 h-115 p-6 rounded-4xl border-3" style="background-color: RGB(137, 194, 217);">
+    
+    <div class="font-outfit text-5xl font-semibold" style="color: RGB(1, 42, 74);">Sign Up</div>
+    <br>
+    <br>
+    <form method="post" class="flex flex-col gap-6 items-center justify-center">
+        {% csrf_token %}
+
+        <div class="grid grid-cols-2">
+            <label for="{{ form.username.id_for_label }}">Username: </label>
+            <div style="background-color: RGB(169, 214, 229);" class="rounded-md borded-2 borded-black px-1.5">
+                {{ form.username }}
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2">
+            <label for="{{ form.name.id_for_label }}">Name: </label>
+            <div style="background-color: RGB(169, 214, 229);" class="rounded-md borded-2 borded-black px-1.5">
+                {{ form.name }}
+            </div>            
+        </div>
+
+        <div class="grid grid-cols-2">
+            <label for="{{ form.email.id_for_label }}">Email: </label>
+            <div style="background-color: RGB(169, 214, 229);" class="rounded-md borded-2 borded-black px-1.5">
+                {{ form.email }}
+            </div>            
+        </div>
+        
+        <div class="grid grid-cols-2">
+            <label for="{{ form.password1.id_for_label }}">Password: </label>
+            <div style="background-color: RGB(169, 214, 229);" class="rounded-md borded-2 borded-black px-1.5">
+                {{ form.password1 }}
+            </div>            
+        </div>
+        
+        <div class="grid grid-cols-2">
+            <label for="{{ form.password2.id_for_label }}">Confirm-Password: </label>
+            <div style="background-color: RGB(169, 214, 229);" class="rounded-md borded-2 borded-black px-1.5">
+                {{ form.password2 }}
+            </div>
+        </div>
+
+        <button type="submit" class="text-xl w-1/2 h-10 rounded-lg my-3" style="background-color: RGB(1, 58, 99); color: RGB(169, 214, 229);">
+            Sign Up
+        </button>
+    </form>
+</div>
+
+{% endblock content %}
