@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
 </head>
 
-<nav class="flex flex-row w-full h-15 items-center font-outfit font-semibold gap-10 text-2xl rounded-xl px-6" style="background-color: RGB(1, 42, 74); color: RGB(97, 165, 194);">
-    
-    <a href="{% url 'blog:homepage' %}">Home</a>
-    <p>Login</p>
-    <a href="{% url 'users:signup' %}">Sign Up</a>
-    <p class="ml-auto">Article Flow</p>
-</nav>
-<br>
-<br>
-<br>
-<br>
 <body style="background-color: RGB(70, 143, 175);" class="flex flex-col justify-center items-center">
+    <nav class="flex flex-row w-full h-15 items-center font-outfit font-semibold gap-10 text-2xl rounded-xl px-6" style="background-color: RGB(1, 42, 74); color: RGB(97, 165, 194);">
+        
+        <a href="{% url 'blog:homepage' %}">Home</a>
+        <a href="{% url 'users:login' %}">Login</a>
+        <a href="{% url 'users:signup' %}">Sign Up</a>
+        <p class="ml-auto">Article Flow</p>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
 {% block content %}{% endblock content %}
 </body>
 </html>
