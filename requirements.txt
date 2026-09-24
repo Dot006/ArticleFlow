@@ -1,1 +1,2 @@
 Django==6.1.1
+django-autoslug==1.9.9
