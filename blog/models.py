@@ -28,6 +28,11 @@ class Article(TimeStampedModel, StatusModel):
     )
     STATUS = Choices('draft', 'published')
     published_at = models.DateTimeField("published", null=True, blank=True)
+    image = models.ImageField(
+        upload_to="articles/",
+        blank=True,
+        null=True,
+    )
     
     
     
