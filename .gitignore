@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 
+media/
+
 .venv/
 venv/
 env/

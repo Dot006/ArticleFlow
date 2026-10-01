@@ -1,7 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
     --font-outfit: "Outfit", sans-serif;
+    
+    --color-brand-100: #EAF6FA;
+    --color-brand-200: #D5EDF3;
+    --color-brand-300: #B9DFEA;
+    --color-brand-400: #A0D2E1;
+    --color-brand-500: #89C2D9;
+    --color-brand-600: #68AEC9;
+    --color-brand-700: #4A98B5;
+    --color-brand-800: #347D9A;
+    --color-brand-900: #24677F;
+
+    --color-supporting-100: #E8F0F5;
+    --color-supporting-200: #CADCE7;
+    --color-supporting-300: #A8C4D4;
+    --color-supporting-400: #759FB6;
+    --color-supporting-500: #4B7893;
+    --color-supporting-600: #315F7B;
+    --color-supporting-700: #234F6A;
+    --color-supporting-800: #1B4961;
+    --color-supporting-900: #164162;
+
+    --color-neutral-100: #F8FAFB;
+    --color-neutral-200: #F1F5F7;
+    --color-neutral-300: #E4EBEF;
+    --color-neutral-400: #CBD7DD;
+    --color-neutral-500: #9AAAB3;
+    --color-neutral-600: #71838D;
+    --color-neutral-700: #52636D;
+    --color-neutral-800: #33434D;
+    --color-neutral-900: #1D2B33;
 }

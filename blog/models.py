@@ -24,7 +24,8 @@ class Article(TimeStampedModel, StatusModel):
     category = models.ForeignKey(
         Category,
         null=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="articles" #default is article_set
     )
     STATUS = Choices('draft', 'published')
     published_at = models.DateTimeField("published", null=True, blank=True)
@@ -33,6 +34,8 @@ class Article(TimeStampedModel, StatusModel):
         blank=True,
         null=True,
     )
+    def __str__(self):
+        return self.title
     
     
     
