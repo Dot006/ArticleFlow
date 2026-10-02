@@ -2,3 +2,6 @@ Django==6.1.1
 django-autoslug==1.9.9
 django-model-utils==5.0.0
 Pillow==12.3.0
+Markdown==3.11
+bleach==6.4.2
+Pygments==2.21.0

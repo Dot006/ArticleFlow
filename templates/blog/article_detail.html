@@ -1,0 +1,64 @@
+{% extends "homepage.html" %}
+
+{% block title %} Article Detail {% endblock title %}
+
+{% block side %}
+<div class="flex flex-col w-[70%] m-2 ml-4 gap-5 items-start content-start">
+    <div class="card border border-neutral-300 bg-neutral-200 shadow-sm p-6 gap-5 w-full">                    
+        <div class="flex justify-between items-center">
+            <span class="badge bg-brand-200 text-supporting-900 border-none font-medium">
+                {{ article.category }}
+            </span>
+            <span class="flex gap-1.5 text-neutral-800 font-medium text-xs">
+                <svg class="h-4 w-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {{ article.published_at|date:"M d ,o" }}
+            </span>
+        </div>
+
+
+        <h1 class="text-3xl text-neutral-900 font-bold leading-tight">
+            {{ article.title }}
+        </h1>
+
+        <div class="flex items-center gap-3 border-b border-neutral-300 pb-4">
+            <div class="flex gap-1.5 items-center font-semibold text-neutral-800">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user preview-icon text-brand-600">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                {{ article.author }}
+            </div>
+        </div>
+
+        <figure class="flex items-center justify-center bg-neutral-300 p-2 overflow-hidden aspect-video rounded-xl border border-neutral-300">
+            <img 
+                src="{{ article.image.url }}" 
+                alt="{{ article.title}}" 
+                class="w-full h-full object-contain hover:scale-105 transition duration-200 ease-out rounded-lg"
+            />
+        </figure>
+
+        <div class="text-neutral-800 text-base leading-relaxed space-y-4 font-normal">
+            <div class="article-content">
+                {{ content_html|safe }}
+            </div>
+        </div>
+
+        <div class="border-t border-neutral-300 my-2"></div>
+
+        <div class="flex justify-between items-center text-neutral-800">
+            <a href="{% url 'blog:homepage' %}" class="group inline-flex items-center gap-1.5 font-medium text-supporting-900 hover:text-brand-700 transition duration-200">
+                <svg class="h-4 w-4 transition-all duration-200 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6-6-6 6-6"/>
+                </svg>
+                <span>Back to Articles</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock side %}
