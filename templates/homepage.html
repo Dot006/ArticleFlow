@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
 </head>
 
-<body class="bg-neutral-100 flex flex-col justify-center items-center w-full h-full">
+<body class="bg-neutral-100 flex flex-col justify-center items-center w-full min-h-screen">
     <nav class="bg-supporting-900 text-neutral-100 flex flex-row w-full h-15 items-center font-outfit font-semibold gap-10 text-2xl rounded-xl px-6 sticky top-0 z-50">
         
-        <a href="{% url 'blog:homepage' %}">Home</a>
-        <a href="{% url 'users:login' %}">Login</a>
-        <a href="{% url 'users:signup' %}">Sign Up</a>
+        <a href="{% url 'blog:homepage' %}" class="hover:text-brand-300">Home</a>
+        <a href="{% url 'users:login' %}" class="hover:text-brand-300">Login</a>
+        <a href="{% url 'users:signup' %}" class="hover:text-brand-300">Sign Up</a>
         <p class="ml-auto text-brand-300">Article Flow</p>
     </nav>
+    <main class="flex-1 flex justify-center items-center">
     {% block content %}
     <br>
     <div class="flex flex-2 flex-row items-start">
@@ -167,20 +168,6 @@
 <br>
 <br>
 {% endblock content %}
+</main>
 </body>
-
-{% comment %} <body style="background-color: RGB(70, 143, 175);" class="flex flex-col justify-center items-center">
-    <nav class="flex flex-row w-full h-15 items-center font-outfit font-semibold gap-10 text-2xl rounded-xl px-6" style="background-color: RGB(1, 42, 74); color: RGB(97, 165, 194);">
-        
-        <a href="{% url 'blog:homepage' %}">Home</a>
-        <a href="{% url 'users:login' %}">Login</a>
-        <a href="{% url 'users:signup' %}">Sign Up</a>
-        <p class="ml-auto">Article Flow</p>
-    </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-{% block content %}{% endblock content %}
-</body> {% endcomment %}
 </html>
