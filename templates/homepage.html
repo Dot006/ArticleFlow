@@ -134,7 +134,7 @@
 
                 {% for category in categories %}
                 <a
-                    href="#"
+                    href="{% url 'blog:categoryArticles' category.slug %}"
                     class="flex items-center justify-between rounded-md px-2.5 py-2
                         text-neutral-800 transition
                         hover:bg-neutral-300 hover:text-neutral-900"
