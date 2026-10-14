@@ -38,4 +38,9 @@ class Article(TimeStampedModel, StatusModel):
         return self.title
     
     
-    
+class Comment(TimeStampedModel):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    content = models.TextField(("Content"))
+    def __str__(self):
+        return f'Comment by {self.author.username} on {self.article.title}'

@@ -13,5 +13,8 @@ urlpatterns = [
     path(route='categories/<slug:slug>/',
          view=views.CategoryArticlesView.as_view(),
          name='categoryArticles'),
+    path(route='articles/<slug:slug>/comments/create',
+         view=views.CommentCreateView.as_view(),
+         name='create-comment'),
     
 ]

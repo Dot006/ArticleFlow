@@ -5,3 +5,4 @@ Pillow==12.3.0
 Markdown==3.11
 bleach==6.4.2
 Pygments==2.21.0
+mysqlclient==2.3.0

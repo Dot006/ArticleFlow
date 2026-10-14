@@ -3,7 +3,7 @@
 {% block title %} Article Detail {% endblock title %}
 
 {% block side %}
-<div class="flex flex-col w-[70%] m-2 ml-4 gap-5 items-start content-start">
+<div class="flex flex-col w-[70%] m-2 ml-4 gap-8 items-start content-start">
     <div class="card border border-neutral-300 bg-neutral-200 shadow-sm p-6 gap-5 w-full">                    
         <div class="flex justify-between items-center">
             <span class="badge bg-brand-200 text-supporting-900 border-none font-medium">
@@ -60,5 +60,127 @@
             </a>
         </div>
     </div>
+
+    <section class="card w-full gap-5 border border-neutral-300 bg-neutral-200 p-4 shadow-sm">
+
+    <div class="flex items-center justify-between border-b border-neutral-300 pb-4">
+        <div class="flex items-center gap-3">
+            <h2 class="text-2xl font-bold text-neutral-900">
+                Comments(<span>{{ comments.count }}</span>)
+            </h2>
+        </div>
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="shrink-0 text-brand-700"
+            aria-hidden="true"
+        >
+            <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+        </svg>
+    </div>
+
+
+    <form action=" {% url 'blog:create-comment' article.slug %}" method="post" class="flex flex-col gap-3">
+        
+        {% csrf_token %}
+
+        <label
+            for="comment-content"
+            class="text-sm font-semibold text-neutral-800"
+        >
+            Share your thoughts
+        </label>
+
+        <textarea
+            id="comment-content"
+            name="content"
+            rows="4"
+            maxlength="2000"
+            placeholder="Write your comment..."
+            required
+            class="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-100 p-3 text-sm leading-6 text-neutral-900 shadow-sm outline-none transition placeholder:text-neutral-500 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+        ></textarea>
+
+        <div class="flex items-center justify-between gap-3">
+            <p class="text-xs text-neutral-600">
+                Be respectful and keep it constructive.
+            </p>
+            <button
+                type="submit"
+                class="btn btn-primary shrink-0"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+
+    <div class="flex flex-col gap-3">
+
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-neutral-900">
+                Recent Comments
+            </h3>
+        </div>
+        {% if comments %}
+        {% for comment in comments %}
+        
+        <article class="flex gap-3 border p-2 rounded-xl border-neutral-300 pb-4">
+            
+            <div class="flex size-10 shrink-0 items-center justify-center rounded-full border border-brand-200 bg-brand-100">
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-brand-700"
+                aria-hidden="true"
+                >
+                <circle cx="12" cy="8" r="5"/>
+                <path d="M20 21a8 8 0 0 0-16 0"/>
+            </svg>
+        </div>
+        
+        <div class="min-w-0 flex-1">
+            
+            <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+                <h4 class="font-semibold text-neutral-900">
+                    {{ comment.author }}
+                </h4>
+                
+                <time
+                class="text-xs text-neutral-600"
+                >
+                {{ comment.created|date:"M d ,o" }}
+            </time>
+        </div>
+        
+        <p class="mt-2 whitespace-pre-line wrap-break-word text-sm leading-6 text-neutral-700"> {{ comment.content }} </p>
+        
+    </div>
+</article>
+
+{% endfor %}
+{% else %}
+<div class="text-neutral-700 text-sm">No comments yet. Be the first to share your thoughts!</div>
+{% endif %}
 </div>
+
+</section>
+</div>
+
+
+
 {% endblock side %}
