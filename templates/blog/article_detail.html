@@ -87,40 +87,48 @@
         </svg>
     </div>
 
-
+    {% if user.is_authenticated %}
+    
     <form action=" {% url 'blog:create-comment' article.slug %}" method="post" class="flex flex-col gap-3">
         
         {% csrf_token %}
-
+        
         <label
-            for="comment-content"
-            class="text-sm font-semibold text-neutral-800"
+        for="comment-content"
+        class="text-sm font-semibold text-neutral-800"
         >
-            Share your thoughts
-        </label>
-
-        <textarea
-            id="comment-content"
-            name="content"
-            rows="4"
-            maxlength="2000"
-            placeholder="Write your comment..."
-            required
-            class="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-100 p-3 text-sm leading-6 text-neutral-900 shadow-sm outline-none transition placeholder:text-neutral-500 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
-        ></textarea>
-
-        <div class="flex items-center justify-between gap-3">
-            <p class="text-xs text-neutral-600">
-                Be respectful and keep it constructive.
-            </p>
-            <button
-                type="submit"
-                class="btn btn-primary shrink-0"
-            >
-                Submit
-            </button>
-        </div>
-    </form>
+        Share your thoughts
+    </label>
+    
+    <textarea
+    id="comment-content"
+    name="content"
+    rows="4"
+    maxlength="2000"
+    placeholder="Write your comment..."
+    required
+    class="w-full resize-y rounded-xl border border-neutral-300 bg-neutral-100 p-3 text-sm leading-6 text-neutral-900 shadow-sm outline-none transition placeholder:text-neutral-500 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+    ></textarea>
+    
+    <div class="flex items-center justify-between gap-3">
+        <p class="text-xs text-neutral-600">
+            Be respectful and keep it constructive.
+        </p>
+        <button
+        type="submit"
+        class="btn btn-primary shrink-0"
+        >
+        Submit
+    </button>
+</div>
+</form>
+{% else %}
+<div class="text-neutral-700 text-center text-lg">Please
+    <a class="text-brand-700 hover:text-brand-900" href="{% url 'users:login' %}?next={{ request.get_full_path|urlencode }}">
+        login
+    </a>
+    to comment on this article.</div>
+{% endif %}
 
     <div class="flex flex-col gap-3">
 

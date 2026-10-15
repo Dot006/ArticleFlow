@@ -52,4 +52,4 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse('blog:article-detail', kwargs={"slug": self.kwargs["slug"]})
-    
+    login_url = 'users:login'    
