@@ -18,6 +18,14 @@ class HomePageView(ListView):
         for article in context["articles"]:
             article.preview = markdown_to_plain_text(article.content)
         return context
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("search", "").strip()
+
+        if query:
+            queryset = queryset.filter(title__icontains=query)
+
+        return queryset
 
 class ArticleDetailView(DetailView):
     model = models.Article

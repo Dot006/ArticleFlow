@@ -43,6 +43,7 @@
     <br>
     <div class="flex flex-2 flex-row items-start gap-5">
         {% block side %}
+        <{% if articles %}
         <div class="w-[70%] grid grid-cols-2 m-1 gap-5 items-start content-start">
             {% for article in articles %}
                 <div class="card border border-neutral-300 bg-neutral-200 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -122,18 +123,29 @@
                 </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="w-[70%] m-1 gap-5 items-center content-center">
+            <p class="text-neutral-700 text-center">No articles found</p>
+        </div>
+        {% endif %}
+
         {% endblock side %}
 
         <div class="flex flex-col w-[30%] sticky top-15 gap-3 max-h-[calc(100vh-4rem)] overflow-y-auto">
             <div class="relative bg-neutral-200 rounded-xl p-2 border border-neutral-300">
                 <h2 class="text-neutral-900 text-xl font-semibold">Search</h2>
-                <input
+                <form action="{% url 'blog:homepage' %}" method="get">
+                    {% csrf_token %}
+                    <input
                     type="text"
                     placeholder="Search articles..."
+                    name="search"
+                    value="{{ request.GET.search|default:'' }}"
                     class="relative w-full rounded-md border bg-neutral-100 border-neutral-300 py-2 pl-3 pr-10
-                        outline-none transition
-                        focus:border-sky-400 focus:ring-2 focus:ring-sky-100 text-neutral-900 mt-2"
-                >
+                    outline-none transition
+                    focus:border-sky-400 focus:ring-2 focus:ring-sky-100 text-neutral-900 mt-2"
+                    >
+                </form>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
