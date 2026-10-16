@@ -1,5 +1,6 @@
 from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse
@@ -19,7 +20,7 @@ class HomePageView(ListView):
             article.preview = markdown_to_plain_text(article.content)
         return context
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = models.Article.objects.filter(status='published')
         query = self.request.GET.get("search", "").strip()
 
         if query:
@@ -45,7 +46,7 @@ class CategoryArticlesView(DetailView):
         context = super().get_context_data(**kwargs)
         context["categories"] = models.Category.objects.all()
         context["recentArticles"] = models.Article.objects.all().order_by("-published_at").values()[:5]
-        context["articles"] = self.object.articles.all()
+        context["articles"] = self.object.articles.filter(status='published')
         for article in context["articles"]:
             article.preview = markdown_to_plain_text(article.content)
         return context
